@@ -1,0 +1,15 @@
+#eclipse
+/target/
+/bin/
+/log/
+
+.classpath
+.project
+.settings/
+/logContentFile.log*
+/.gitignore
+
+#idea
+.idea/
+*.iml
+CATALINA_BASE_IS_UNDEFINED
