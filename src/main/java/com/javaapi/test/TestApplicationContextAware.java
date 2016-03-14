@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * Created by user on 15/12/13.
  */
-public class Test implements ApplicationContextAware {
+public class TestApplicationContextAware implements ApplicationContextAware {
     
     public void test(){
         System.out.println("\"====================\" = " + "====================");
