@@ -93,11 +93,16 @@ public class HellowController {
         /**
          * 没打包的情况下输出
          /Users/user/workspace-2015-08-13/spring-boot-test/src/main/webapp/
+         打成jar输出
+         realPath = /private/var/folders/f4/45zf68wx2xz7gbl37lp981wh0000gp/T/tomcat-docbase.1284768531660808595.8080/
+
          *
          */
         System.out.println("realPath = " + realPath);
         /** 没打包的情况下输出
          /Users/user/workspace-2015-08-13/spring-boot-test
+         打成jar输出
+         /Users/user/workspace-2015-08-13/spring-boot-test/target
          *
          */
         System.out.println("realPath = " + System.getProperty("user.dir"));
@@ -110,6 +115,40 @@ public class HellowController {
     public static void main(String[] args) {
         //第一个简单的应用，
         SpringApplication.run(HellowController.class, args);
+
+    }
+
+    /**
+     *
+     *
+     * 1
+     * @Conditional(MyCondition.class)
+    这句代码可以标注在类上面，表示该类下面的所有@Bean都会启用配置
+    也可以标注在方法上面，只是对该方法启用配置
+
+    除了自己自定义Condition之外，Spring还提供了很多Condition给我们用
+     @ConditionalOnBean（仅仅在当前上下文中存在某个对象时，才会实例化一个Bean）
+     @ConditionalOnClass（某个class位于类路径上，才会实例化一个Bean）
+     @ConditionalOnExpression（当表达式为true的时候，才会实例化一个Bean）
+     @ConditionalOnMissingBean（仅仅在当前上下文中不存在某个对象时，才会实例化一个Bean）
+     @ConditionalOnMissingClass（某个class类路径上不存在的时候，才会实例化一个Bean）
+     @ConditionalOnNotWebApplication（不是web应用）
+
+
+     2
+     http://miclee.cn/2015/12/23/spring-boot-6/
+
+     延伸几个 spring-boot提供的 @Conditional的子集，具体了Conditional的条件：
+
+     @ConditionalOnClass: 等同于 @Conditional(OnClassCondition.class)，表示存在对应的Class文件时才会去创建该bean
+     @ConditionalOnMissingBean: 等同于 @Conditional(OnBeanCondition.class)，表示spring上下文里缺失某个bean时才会去创建该bean
+     @ConditionalOnWebApplication: 等同于 @Conditional(OnWebApplicationCondition.class)，表示只有在WEB应用时才会创建该bean
+
+
+
+
+     */
+    public void test(){
 
     }
 
