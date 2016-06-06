@@ -144,6 +144,7 @@ public class HellowController {
      @ConditionalOnMissingBean: 等同于 @Conditional(OnBeanCondition.class)，表示spring上下文里缺失某个bean时才会去创建该bean
      @ConditionalOnWebApplication: 等同于 @Conditional(OnWebApplicationCondition.class)，表示只有在WEB应用时才会创建该bean
 
+     @ConditionalOnProperty 等同于 @Conditional(OnPropertyCondition.class) (另外判断条件比较逗逼)
 
 
 
