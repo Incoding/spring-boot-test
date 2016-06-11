@@ -6,25 +6,36 @@ import com.javaapi.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
 //You should only ever add one @EnableAutoConfiguration annotation. We generally recommend that you add it to your primary @Configuration class.
+@Configuration
 @EnableTransactionManagement
 @Controller
-@EnableAutoConfiguration
+// exclude 不让spring 提供的异常处理页面生效
+@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 @ImportResource("classpath:application-context.xml")
 //打war包注意
 // http://mrlee23.iteye.com/blog/2047968
 
-public class HellowController {
+public class HellowController extends SpringBootServletInitializer {
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(HellowController.class);
+    }
 
     @Autowired
     private UserDao userDao;
@@ -108,6 +119,38 @@ public class HellowController {
         System.out.println("realPath = " + System.getProperty("user.dir"));
 
         return "success";
+    }
+
+
+
+    /**
+     * 在spring-boot 1.2.3中
+     * 要用war包 (不能用jar,也就是不能直接使用main函数启动)
+     * 配置方式, 注意在main中启动时会报错的
+     *
+     * http://bbs.csdn.net/topics/390872423
+     *
+     *
+     * 1   启动的类继承  extends SpringBootServletInitializer
+         2   重写configure方法
+         @Override
+         protected SpringApplicationBuilder configure(
+         SpringApplicationBuilder application) {
+         // TODO Auto-generated method stub
+         return application.sources(SampleSimpleApplication.class);
+         }
+         3     在resources下加入
+         spring.view.prefix: /WEB-INF/jsp/
+         spring.view.suffix: .jsp
+
+      * @param map
+     * @return
+     */
+    @RequestMapping("/testJsp")
+    public String testJsp(ModelMap map) {
+//        map.put("nihao", "nihao");
+        return "helloworld";
+
     }
 
 
