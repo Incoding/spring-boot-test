@@ -94,7 +94,7 @@ public class HellowController extends SpringBootServletInitializer {
 
     /**
      * 测试事物
-     * @param id
+     * @param
      * @return
      */
     @RequestMapping("/getRealContext")
@@ -104,15 +104,18 @@ public class HellowController extends SpringBootServletInitializer {
         /**
          * 没打包的情况下输出
          /Users/user/workspace-2015-08-13/spring-boot-test/src/main/webapp/
-         打成jar输出
+         打成可执行jar输出
          realPath = /private/var/folders/f4/45zf68wx2xz7gbl37lp981wh0000gp/T/tomcat-docbase.1284768531660808595.8080/
-
+         打成可执行war输出
+         null
          *
          */
         System.out.println("realPath = " + realPath);
         /** 没打包的情况下输出
          /Users/user/workspace-2015-08-13/spring-boot-test
          打成jar输出
+         /Users/user/workspace-2015-08-13/spring-boot-test/target
+         打成可执行war输出
          /Users/user/workspace-2015-08-13/spring-boot-test/target
          *
          */

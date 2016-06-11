@@ -24,6 +24,7 @@ import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
+// spring-boot 特色就是可以直接启动内置服务器,进行全栈测试
 //http://docs.spring.io/spring-boot/docs/1.1.x/reference/htmlsingle/#boot-features-testing
 //http://www.jayway.com/2014/07/04/integration-testing-a-spring-boot-application/
 @RunWith(SpringJUnit4ClassRunner.class)   // 1
