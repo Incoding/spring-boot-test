@@ -2,6 +2,7 @@ package com.javaapi.test;
 
 import com.javaapi.test.dao.jpa.dao.UserDao;
 import com.javaapi.test.dao.jpa.model.User;
+import com.javaapi.test.service.UserJdbcService;
 import com.javaapi.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -9,12 +10,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 //You should only ever add one @EnableAutoConfiguration annotation. We generally recommend that you add it to your primary @Configuration class.
 @Configuration
-@EnableTransactionManagement
+//@EnableTransactionManagement
 @Controller
 // exclude 不让spring 提供的异常处理页面生效
 @EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
@@ -42,6 +43,9 @@ public class HellowController extends SpringBootServletInitializer {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     /**
      * 测试controller
@@ -76,6 +80,20 @@ public class HellowController extends SpringBootServletInitializer {
     @ResponseBody
     public String updateUser(String id) {
         userService.updateUser(id);
+        return "success";
+    }
+
+    /**
+     * 测试事物2
+     * @param id
+     * @return
+     */
+    @RequestMapping("/updateUser2")
+    @ResponseBody
+    public String updateUser2(String id) {
+        UserJdbcService userJdbcService = (UserJdbcService) applicationContext.getBean("userJdbcServiceImpl");
+
+        userJdbcService.updateUser(id);
         return "success";
     }
 
