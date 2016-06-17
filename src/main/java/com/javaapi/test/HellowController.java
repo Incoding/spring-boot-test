@@ -12,8 +12,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.ui.ModelMap;
@@ -31,7 +33,8 @@ import javax.servlet.http.HttpServletRequest;
 @ImportResource("classpath:application-context.xml")
 //打war包注意
 // http://mrlee23.iteye.com/blog/2047968
-
+@EnableScheduling
+@ComponentScan(basePackages={"com.javaapi.test.task"})
 public class HellowController extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
