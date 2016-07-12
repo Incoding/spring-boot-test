@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 //打war包注意
 // http://mrlee23.iteye.com/blog/2047968
 @EnableScheduling
-@ComponentScan(basePackages={"com.javaapi.test.task"})
+@ComponentScan(basePackages={"com.javaapi.test.task","com.javaapi.test.controller","com.javaapi.test.session"})
 public class HellowController extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
