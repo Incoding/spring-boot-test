@@ -185,9 +185,7 @@
         <appender-ref ref="registerSource"/>
     </logger>
 
-    <logger name="com.jeecms.cms.manager.main.impl.AcAKB58VoteLogMngImpl" level="INFO" additivity="false">
-        <appender-ref ref="akb58votelog"/>
-    </logger>
+
     <logger name="org.hibernate.cache.redis" level="ERROR" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>

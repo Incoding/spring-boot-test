@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -34,6 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 //打war包注意
 // http://mrlee23.iteye.com/blog/2047968
 @EnableScheduling
+@ServletComponentScan
 @ComponentScan(basePackages={"com.javaapi.test.task","com.javaapi.test.controller","com.javaapi.test.session"})
 public class HellowController extends SpringBootServletInitializer {
     @Override
@@ -71,6 +73,12 @@ public class HellowController extends SpringBootServletInitializer {
          @ResponseBody
          public String nihao(String name) {
         User byUsername = userDao.findByUsername(name);
+        User byUsername2 = userDao.findByUsername(name);
+        User byUsername3 = userDao.findByUsername(name);
+        userDao.findOne("1");
+        userDao.findOne("2");
+        userDao.findOne("4");
+        userDao.exists("5");
         return byUsername== null ? "user is not found":byUsername.toString();
     }
 
