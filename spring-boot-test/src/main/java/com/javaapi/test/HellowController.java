@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 //打war包注意
 // http://mrlee23.iteye.com/blog/2047968
 @EnableScheduling
-@ServletComponentScan
+@ServletComponentScan(basePackages={"com.javaapi.test"})
 @ComponentScan(basePackages={"com.javaapi.test.task","com.javaapi.test.controller","com.javaapi.test.session"})
 public class HellowController extends SpringBootServletInitializer {
     @Override
@@ -155,7 +155,7 @@ public class HellowController extends SpringBootServletInitializer {
 
 
 
-    /**
+    /**配置 jsp
      * 在spring-boot 1.2.3中
      * 要用war包 (不能用jar,也就是不能直接使用main函数启动)
      * 配置方式, 注意在main中启动时会报错的
