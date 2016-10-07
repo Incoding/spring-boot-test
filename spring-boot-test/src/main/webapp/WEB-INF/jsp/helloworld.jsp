@@ -1,16 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 16/6/11
-  Time: 上午11:52
-  To change this template use File | Settings | File Templates.
---%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>test</title>
 </head>
 <body>
-     aaaaaaaaaa
+${nihao}     aaaaaaaaaa
 </body>
 </html>

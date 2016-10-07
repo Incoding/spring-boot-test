@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 //@EnableTransactionManagement
 @Controller
 // exclude 不让spring 提供的异常处理页面生效
+//@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 @EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 @ImportResource("classpath:application-context.xml")
 //打war包注意
@@ -37,11 +36,12 @@ import javax.servlet.http.HttpServletRequest;
 @EnableScheduling
 @ServletComponentScan(basePackages={"com.javaapi.test"})
 @ComponentScan(basePackages={"com.javaapi.test.task","com.javaapi.test.controller","com.javaapi.test.session"})
-public class HellowController extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(HellowController.class);
-    }
+public class HellowController  {
+//public class HellowController extends SpringBootServletInitializer {
+//    @Override
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//        return builder.sources(HellowController.class);
+//    }
 
     @Autowired
     private UserDao userDao;
@@ -180,10 +180,52 @@ public class HellowController extends SpringBootServletInitializer {
      */
     @RequestMapping("/testJsp")
     public String testJsp(ModelMap map) {
-//        map.put("nihao", "nihao");
+        map.put("nihao", "kk");
+        //1  如果 jsp放到/WEB-INF/jsp/目录下  ,则只有响应myIndex
+//        则要这么配置
+//        #spring.mvc.view.prefix=/WEB-INF/jsp/
+//        #spring.mvc.view.suffix=.jsp
         return "helloworld";
 
     }
+    @RequestMapping("/testJsp2")
+    public String testJsp2(ModelMap map) {
+        map.put("nihao", "nihao");
+        //1  如果 jsp放到static目录下,其他什么都不配置,则只有响应myIndex.jsp 才能正确找到
+        return "myIndex.jsp";
+    }
+
+    @RequestMapping("/testJsp3")
+    public String testJsp3(ModelMap map) {
+        map.put("nihao", "nihao333");
+        //1  如果 jsp放到static目录下,则只有响应myIndex
+//        需要这么配置
+//        spring.mvc.view.prefix=/
+//        spring.mvc.view.suffix=.jsp
+        return "myIndex";
+    }
+
+    /**
+     * springboot 在jar中使用jsp
+     *
+     * 1 jsp 文件放置在 src/main/resources/META-INF/resources/WEB-INF/jsp
+     * 2 application.properties里这么配置
+     * #spring.mvc.view.prefix=/WEB-INF/jsp/
+       #spring.mvc.view.suffix=.jsp
+       3 controller里这么访问    myIndex
+     * https://dzone.com/articles/spring-boot-with-jsps-in-executable-jars-1
+     * @param map
+     * @return
+     */
+    @RequestMapping("/testJsp4")
+    public String testJsp4(ModelMap map) {
+        map.put("nihao", "nihao333");
+        return "myIndex";
+    }
+
+
+
+
 
 
 
