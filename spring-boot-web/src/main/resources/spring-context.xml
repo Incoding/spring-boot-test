@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    		http://www.springframework.org/schema/context 
+    		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 金山云视频转码规则定义 -->
+	<bean id="encodeMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="360P" value="f=mp4&vbr=350k&res=640x360&abr=32k&asf=8000Hz&ac=libmp3lame" />
+				<entry key="720P" value="f=mp4&vbr=800k&res=1024x768&abr=32k&asf=12050Hz&ac=libmp3lame" />
+				<entry key="1080P" value="f=mp4&vbr=1300k&res=1280x720&abr=64k&asf=22050Hz&ac=libmp3lame" />
+				<entry key="yuanhua" value="f=mp4" />
+			</map>
+		</property>
+	</bean>
+</beans>
