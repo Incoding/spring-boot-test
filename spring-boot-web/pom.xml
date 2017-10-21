@@ -113,17 +113,5 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>acfun nexus</id>
-            <url>http://nexus.acfun.tv/nexus/content/groups/public/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+
 </project>
